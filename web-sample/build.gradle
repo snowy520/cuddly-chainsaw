@@ -24,9 +24,8 @@ dependencies {
             'org.springframework:spring-aop:4.2.5.RELEASE',
             'org.springframework:spring-oxm:4.2.5.RELEASE',
             'org.springframework:spring-test:4.2.5.RELEASE',
-//            'org.apache.shiro:shiro-core:1.2.4',
-//            'org.apache.shiro:shiro-web:1.2.4',
-//            'org.apache.shiro:shiro-spring:1.2.4',
+            /* Tools */
+            'com.google.code.gson:gson:2.7',
             'com.google.guava:guava:19.0',
             'com.google.protobuf:protobuf-java:3.0.0',
             /* Servlet */
