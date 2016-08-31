@@ -1,15 +1,20 @@
 package com.chainsaw.app;
 
+import org.hibernate.validator.HibernateValidator;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.*;
 
+import javax.inject.Inject;
 import java.util.List;
 
 /**
@@ -18,7 +23,9 @@ import java.util.List;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.chainsaw.controller"})
+@PropertySource(value = {"classpath:/messages.properties"})
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
+
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         super.configureMessageConverters(converters);
@@ -33,7 +40,15 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public Validator getValidator() {
-        return super.getValidator();
+//        return super.getValidator();
+        LocalValidatorFactoryBean localValidatorFactoryBean = new LocalValidatorFactoryBean();
+        localValidatorFactoryBean.setProviderClass(HibernateValidator.class);
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasename("classpath:messages");
+//        messageSource.setFileEncodings();
+        messageSource.setCacheSeconds(3600);
+        localValidatorFactoryBean.setValidationMessageSource(messageSource);
+        return localValidatorFactoryBean;
     }
 
     @Override

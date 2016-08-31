@@ -31,7 +31,7 @@ public class WebAppInitializer implements WebApplicationInitializer {
 //        rootContext.getEnvironment().setActiveProfiles("openshift");
 
         // Register and map the dispatcher servlet
-        ServletRegistration.Dynamic dispatcher = container.addServlet("crm", new DispatcherServlet(rootContext));
+        ServletRegistration.Dynamic dispatcher = container.addServlet("sample", new DispatcherServlet(rootContext));
         dispatcher.setLoadOnStartup(1);
         dispatcher.setAsyncSupported(true);
         dispatcher.addMapping("/api/*");
