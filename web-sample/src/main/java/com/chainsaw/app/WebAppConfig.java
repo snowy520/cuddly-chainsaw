@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Configuration
 @ComponentScan(basePackages = {"com.chainsaw"},
         excludeFilters =  @ComponentScan.Filter(classes = {RestController.class,Controller.class}))
-@PropertySource(value = {"classpath:/webapp.properties"})
+@PropertySource(value = {"classpath:/webapp.properties","classpath:/messages.properties"})
 public class WebAppConfig {
 
 
