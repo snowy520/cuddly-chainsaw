@@ -8,7 +8,7 @@ import java.io.Serializable;
  */
 public class InParam implements Serializable {
     private static final long serialVersionUID = -8752962518894945622L;
-    @NotNull(message = "name is null")
+    @NotNull(message = "name ... is null")
     private String name;
     @Max(value = 30,message = "max ...")
     private int age;

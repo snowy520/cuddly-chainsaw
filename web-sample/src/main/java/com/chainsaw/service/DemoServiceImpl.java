@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
+import org.springframework.validation.Validator;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 
 import javax.inject.Inject;
@@ -25,6 +27,10 @@ import java.util.List;
 public class DemoServiceImpl implements DemoService {
     @Inject
     private ContactValidator contactValidator;
+
+    @Inject
+    private Validator validator;
+
     @Override
     public void testValidator(InParam inParam) {
 
@@ -36,8 +42,13 @@ public class DemoServiceImpl implements DemoService {
         Object address = beanWrapper.getPropertyValue("address");
         System.out.println(address);
 
+
+
         Errors errors = new BeanPropertyBindingResult(inParam, inParam.getName());
-        contactValidator.validate(inParam,errors);
+
+        validator.validate(inParam,errors);
+
+//        contactValidator.validate(inParam,errors);
 
 //        ValidationUtils.invokeValidator(contactValidator,inParam,errors);
 
