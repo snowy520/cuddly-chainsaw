@@ -1,0 +1,62 @@
+group 'com.chainsaw'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'com.google.protobuf'
+
+sourceCompatibility = 1.7
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.springframework:spring-context:4.3.2.RELEASE',
+            'org.springframework:spring-core:4.3.2.RELEASE',
+            'org.springframework:spring-beans:4.3.2.RELEASE',
+            'org.springframework:spring-expression:4.3.2.RELEASE',
+            'org.springframework:spring-context-support:4.3.2.RELEASE',
+            'org.springframework:spring-jdbc:4.3.2.RELEASE',
+            'org.springframework:spring-tx:4.3.2.RELEASE',
+            'org.springframework:spring-web:4.3.2.RELEASE',
+            'org.springframework:spring-webmvc:4.3.2.RELEASE',
+            'org.springframework:spring-aspects:4.3.2.RELEASE',
+            'org.springframework:spring-aop:4.3.2.RELEASE',
+            'org.springframework:spring-oxm:4.3.2.RELEASE',
+            'org.springframework:spring-test:4.3.2.RELEASE',
+            /* Tools */
+            'javax.inject:javax.inject:1',
+            'com.google.protobuf:protobuf-java:3.0.0',
+            'io.grpc:grpc-all:1.0.0'
+    testCompile 'junit:junit:4.12'
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        // ASSUMES GRADLE 2.12 OR HIGHER. Use plugin version 0.7.5 with earlier
+        // gradle versions
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.0'
+    }
+}
+
+protobuf {
+    protoc {
+        // The version of protoc must match protobuf-java. If you don't depend on
+        // protobuf-java directly, you will be transitively depending on the
+        // protobuf-java version that grpc depends on.
+        artifact = "com.google.protobuf:protoc:3.0.0"
+    }
+    plugins {
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.0.0'
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {}
+        }
+    }
+}
