@@ -1,5 +1,6 @@
 package com.chainsaw.app;
 
+import org.hibernate.validator.HibernateValidator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -22,12 +23,16 @@ public class WebAppConfig {
     @Bean
     public MethodValidationPostProcessor validationPostProcessor() {
         MethodValidationPostProcessor methodValidationPostProcessor = new MethodValidationPostProcessor();
+//        methodValidationPostProcessor.setValidatorFactory(new LocalValidatorFactoryBean());
+//        methodValidationPostProcessor.setValidator(new LocalValidatorFactoryBean());
         return methodValidationPostProcessor;
     }
 
     @Bean
     public Validator validator() {
-        return new LocalValidatorFactoryBean();
+        LocalValidatorFactoryBean localValidatorFactoryBean = new LocalValidatorFactoryBean();
+        localValidatorFactoryBean.setProviderClass(HibernateValidator.class);
+        return localValidatorFactoryBean;
     }
 
 }

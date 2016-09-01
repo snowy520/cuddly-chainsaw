@@ -20,7 +20,8 @@ public class ContactValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        ValidationUtils.rejectIfEmpty(errors,"name","name.empty");
+        ValidationUtils.rejectIfEmpty(errors,"name","name is empty");
+        ValidationUtils.rejectIfEmpty(errors,"password","name is empty");
     }
 
 }

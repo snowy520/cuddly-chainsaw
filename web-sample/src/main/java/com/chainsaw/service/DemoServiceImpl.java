@@ -32,7 +32,7 @@ public class DemoServiceImpl implements DemoService {
     private Validator validator;
 
     @Override
-    public void testValidator(InParam inParam) {
+    public void testValidator(@Validated InParam inParam) {
 
         BeanWrapper beanWrapper = new BeanWrapperImpl(new Company());
         beanWrapper.setPropertyValue("name","company_name");
@@ -46,9 +46,9 @@ public class DemoServiceImpl implements DemoService {
 
         Errors errors = new BeanPropertyBindingResult(inParam, inParam.getName());
 
-        validator.validate(inParam,errors);
+//        validator.validate(inParam,errors);
 
-//        contactValidator.validate(inParam,errors);
+        contactValidator.validate(inParam,errors);
 
 //        ValidationUtils.invokeValidator(contactValidator,inParam,errors);
 
@@ -65,6 +65,7 @@ public class DemoServiceImpl implements DemoService {
         context.refresh();
         DemoService demoService = context.getBean(DemoService.class);
         InParam inParam = new InParam();
+        inParam.setName("xx");
         demoService.testValidator(inParam);
     }
 
