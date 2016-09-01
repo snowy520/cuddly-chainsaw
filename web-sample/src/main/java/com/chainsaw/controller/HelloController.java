@@ -1,13 +1,10 @@
 package com.chainsaw.controller;
 
-import com.chainsaw.dto.InParam;
+import com.chainsaw.bean.InParam;
 import com.chainsaw.service.DemoService;
 import com.chainsaw.utils.CommonUtil;
-import com.chainsaw.validator.ValidGrouop1;
-import com.google.gson.Gson;
 import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
-import javax.validation.constraints.Null;
 import java.util.HashMap;
 import java.util.Map;
 

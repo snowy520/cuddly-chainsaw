@@ -1,4 +1,4 @@
-package com.chainsaw.dto;
+package com.chainsaw.bean;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
