@@ -1,3 +1,4 @@
 rootProject.name = 'cuddly-chainsaw'
-include ':web-sample'
-include ':rpc-sample'
+include 'web-sample'
+include 'rpc-sample'
+include 'groovy-sample'
