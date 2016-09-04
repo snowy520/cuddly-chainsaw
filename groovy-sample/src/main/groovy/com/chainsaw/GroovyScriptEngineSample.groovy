@@ -7,7 +7,9 @@ package com.chainsaw
 //}
 
 def binding = new Binding()
-def engine = new GroovyScriptEngine([tmpDir.toURI().toURL()] as URL[])
+binding.setProperty("name","me")
+String[] roots  =  {"src/groovy/com/chainsaw"} ;
+def engine = new GroovyScriptEngine(roots)
 
 while (true) {
     def greeter = engine.run('ReloadingTest.groovy', binding)
