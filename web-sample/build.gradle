@@ -33,6 +33,9 @@ dependencies {
             'javax.el:javax.el-api:3.0.0',
             'org.apache.commons:commons-collections4:4.1',
             'javax.inject:javax.inject:1',
+            'net.sf.ehcache:ehcache:2.10.2',
+            'org.ehcache:ehcache:3.1.2',
+            'com.googlecode.ehcache-spring-annotations:ehcache-spring-annotations:1.2.0',
             /* Servlet */
             'javax.servlet:javax.servlet-api:3.0.1',
             'javax.servlet.jsp:jsp-api:2.2',
