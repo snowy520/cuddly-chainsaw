@@ -6,10 +6,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Validator;
@@ -25,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
         excludeFilters =  @ComponentScan.Filter(classes = {RestController.class,Controller.class}))
 @PropertySource(value = {"classpath:/webapp.properties"})
 @EnableCaching
+@Profile("dev")
 public class WebAppConfig {
 
     @Bean

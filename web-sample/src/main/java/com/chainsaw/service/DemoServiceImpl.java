@@ -78,6 +78,7 @@ public class DemoServiceImpl implements DemoService {
 
     public static void main(String[] args) {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
+//        context.getEnvironment().setActiveProfiles("dev");
         context.register(WebAppConfig.class, WebMvcConfig.class);
         context.setServletConfig(new MockServletConfig());
         context.refresh();
