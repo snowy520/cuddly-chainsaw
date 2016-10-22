@@ -36,6 +36,11 @@ dependencies {
             'net.sf.ehcache:ehcache:2.10.2',
             'org.ehcache:ehcache:3.1.2',
             'com.googlecode.ehcache-spring-annotations:ehcache-spring-annotations:1.2.0',
+            'commons-lang:commons-lang:2.6',
+            'commons-codec:commons-codec:1.10',
+            'commons-beanutils:commons-beanutils-core:1.8.3',
+            'org.apache.commons:commons-lang3:3.4',
+            'com.baidu.disconf:disconf-client:2.6.36',
             /* Servlet */
             'javax.servlet:javax.servlet-api:3.0.1',
             'javax.servlet.jsp:jsp-api:2.2',
