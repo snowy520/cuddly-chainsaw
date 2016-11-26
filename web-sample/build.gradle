@@ -47,3 +47,27 @@ dependencies {
             'javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.1'
     testCompile 'junit:junit:4.12'
 }
+
+version = '1.1.1'
+
+ext.versionFile = file('src/main/resources/webapp.properties')
+
+task printVersion {
+    doFirst {
+        println 'Before reading...'
+    }
+
+    Properties properties = new Properties();
+    versionFile.withInputStream { stream ->
+        properties.load(stream)
+    }
+
+    doLast {
+        println "$description"
+        println "verson: $version"
+    }
+
+}
+printVersion.doFirst {println 'first'}
+printVersion << {logger.quiet("last:$version")}
+
