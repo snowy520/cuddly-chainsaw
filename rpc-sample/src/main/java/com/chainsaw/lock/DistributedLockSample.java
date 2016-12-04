@@ -1,12 +1,11 @@
 package com.chainsaw.lock;
 
 import org.redisson.Redisson;
-import org.redisson.api.RExecutorService;
-import org.redisson.api.RLock;
-import org.redisson.api.RMap;
-import org.redisson.api.RedissonClient;
+import org.redisson.api.*;
 import org.redisson.config.Config;
+import org.redisson.connection.ConnectionListener;
 
+import java.net.InetSocketAddress;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -16,7 +15,7 @@ public class DistributedLockSample {
 
     public static void main(String[] args) {
         DistributedLockSample sample = new DistributedLockSample();
-        sample.testLock();
+        sample.test();
     }
 
     public void test() {
@@ -24,8 +23,32 @@ public class DistributedLockSample {
         RedissonClient redisson = getRedissonClient();
         // 3. Get object you need
         RMap<String, String> map = redisson.getMap("myMap");
-        RLock lock = redisson.getLock("myLock");
-        RExecutorService executor = redisson.getExecutorService("myExecutorService");
+        map.put("0", "yyy");
+        map.fastPut("1","xxxx");
+        map.fastRemove("1");
+
+        RRemoteService remoteService = redisson.getRemoteService();
+        SomeServiceImpl someServiceImpl = new SomeServiceImpl();
+        remoteService.register(SomeServiceInterface.class, someServiceImpl);
+
+        SomeServiceInterface service = remoteService.get(SomeServiceInterface.class);
+        String result = service.doSomeStuff(1L, "secondParam", new AnyParam());
+
+//        RLock lock = redisson.getLock("myLock");
+//        RExecutorService executor = redisson.getExecutorService("myExecutorService");
+
+//        NodesGroup<Node> nodesGroup = redisson.getNodesGroup();
+//        nodesGroup.addConnectionListener(new ConnectionListener() {
+//            @Override
+//            public void onConnect(InetSocketAddress addr) {
+//                System.out.println(addr.getHostString());
+//            }
+//            @Override
+//            public void onDisconnect(InetSocketAddress addr) {
+//                System.out.println(addr.getHostString());
+//            }
+//        });
+
     }
 
     private RedissonClient getRedissonClient() {
@@ -35,10 +58,6 @@ public class DistributedLockSample {
         // 2. Create Redisson instance
         RedissonClient redisson = Redisson.create(config);
         return redisson;
-    }
-
-    private RedissonClient getRedissonClient0() {
-        return null;
     }
 
     public void testLock() {
