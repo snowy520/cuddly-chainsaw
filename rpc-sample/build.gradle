@@ -31,6 +31,11 @@ dependencies {
             /* Tools */
             'javax.inject:javax.inject:1',
             'com.google.protobuf:protobuf-java:3.0.0',
+            'redis.clients:jedis:2.9.0',
+            'org.redisson:redisson:3.2.0',
+            'org.apache.zookeeper:zookeeper:3.4.9',
+            'org.apache.curator:curator-framework:3.2.1',
+            'org.apache.curator:curator-client:3.2.1',
             'io.grpc:grpc-all:1.0.0'
     testCompile 'junit:junit:4.12'
 }
